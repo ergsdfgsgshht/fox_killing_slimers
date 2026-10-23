@@ -5,6 +5,8 @@ var over_menu:Node2D
 var player:CharacterBody2D
 var slimers: Array[Node]
 var over_times: int = 0
+var bullet_number:int = 30
+@onready var camera = $Camera2D2
 @export var slimer_numbers:int
 
 
@@ -45,16 +47,29 @@ func _on_start_game() -> void:
 	
 	#加载玩家位置
 	add_child(player)
-	player.position = Vector2(-202,98)
+	player.position = Vector2(0,0)
 	player.player_state = player.PlayerState.STANDING
 	
 	#加载slimers位置
 	for i in range(slimer_numbers):
-		var slimer_pos = Vector2(randi_range(-87,193),randi_range(-115,88))
+		var scope = randi_range(1,4)
+		var slimer_pos:Vector2
+		if scope == 1:
+			slimer_pos = Vector2(randf_range(-828,-158),randf_range(-403,-87))
+		if scope == 2:
+			slimer_pos = Vector2(randf_range(177,812),randf_range(-392,-77))
+		if scope == 3:
+			slimer_pos = Vector2(randf_range(-821,-137),randf_range(86,381))
+		if scope == 4:
+			slimer_pos = Vector2(randf_range(129,803),randf_range(76,376))
 		add_child(slimers[i])
 		slimers[i].position = slimer_pos
 		if over_times == 0:
 			slimers[i].slime_collieded.connect(_on_slime_collied)
+	
+	camera.zoom = Vector2(2.515,2.455)
+	camera.reparent(player)
+	camera.position = Vector2.ZERO  #reparent默认保持全局位置，会残留偏移；归零让相机正对玩家
 		
 	
 	
@@ -73,6 +88,9 @@ func _game_over() -> void:
 	over_times += 1
 	player.player_state = player.PlayerState.DIED
 	await get_tree().create_timer(2.3).timeout
+	camera.reparent(self)
+	camera.position = Vector2.ZERO
+	camera.zoom = Vector2(1.035,1.41)
 	remove_child(player)
 	for i in range(slimer_numbers):
 		remove_child(slimers[i])
@@ -94,4 +112,6 @@ func _on_menu_exit() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if bullet_number != 0:
+		pass
 	pass

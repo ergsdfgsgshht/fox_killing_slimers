@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dlnaxbfmillkf" path="res://src/main_control.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://bwqo700nei2bd" path="res://AssetBundle/Sprites/5a2da4f5-7121-4eb8-865f-dd08daa09113.png" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://bb8flm1wjbo6u" path="res://scenes/player.tscn" id="3_sugp2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cnf8o"]
 distance = -420.0
@@ -19,16 +18,11 @@ distance = -10.0
 [node name="MainScene" type="Node2D" unique_id=417079548]
 position = Vector2(-3, 5)
 script = ExtResource("1_jyhfs")
-slimer_numbers = 14
+slimer_numbers = 20
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=377853019]
 position = Vector2(-4, -3)
 texture = ExtResource("2_0wfyh")
-
-[node name="Camera2D2" type="Camera2D" parent="." unique_id=801696517]
-position = Vector2(-1, 0)
-scale = Vector2(1.3159267, 1)
-zoom = Vector2(1.025, 1.395)
 
 [node name="MapEdge" type="StaticBody2D" parent="." unique_id=1491088168]
 position = Vector2(0, -1)
@@ -52,4 +46,5 @@ position = Vector2(-1, -413)
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_mlurj")
 
-[node name="Player" parent="." unique_id=1737204404 instance=ExtResource("3_sugp2")]
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=801696517]
+zoom = Vector2(1.035, 1.41)

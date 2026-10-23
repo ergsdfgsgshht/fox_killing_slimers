@@ -25,9 +25,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2(inputs*speed)
 		move_and_slide()
 	else:
-		if player_state == PlayerState.MOVING:
-			animation_player.play("待机")
-			player_state = PlayerState.STANDING
+		animation_player.play("待机")
+
 			
 	
 		
