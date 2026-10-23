@@ -10,9 +10,7 @@ func _ready() -> void:
 
 	pass
 
-func recieve_pos(pos:Vector2):
-	print("收到坐标：",pos)
-	pass
+
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -20,6 +18,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	slime_collieded.emit(body)
 	
 func _physics_process(delta: float) -> void:
+	
 	pass
 	
 
