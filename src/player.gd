@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var animation_player = $AnimatedSprite2D
 enum PlayerState {STANDING,MOVING,DIED}
 @onready var player_state = PlayerState.STANDING
+signal player_pos(pos:Vector2)
+var count:int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -27,6 +29,9 @@ func _physics_process(delta: float) -> void:
 		if player_state == PlayerState.MOVING:
 			animation_player.play("待机")
 			player_state = PlayerState.STANDING
+			
+	player_pos.emit(position)
+	print(position)
 		
 	
 	

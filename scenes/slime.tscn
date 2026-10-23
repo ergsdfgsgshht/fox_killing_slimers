@@ -72,6 +72,7 @@ radius = 12.0
 
 [node name="Slime" type="CharacterBody2D" unique_id=23503657]
 script = ExtResource("1_p2gj0")
+speed = 15.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1738471783]
 sprite_frames = SubResource("SpriteFrames_cnf8o")

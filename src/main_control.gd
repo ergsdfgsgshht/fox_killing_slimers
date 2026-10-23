@@ -7,6 +7,8 @@ var slimers: Array[Node]
 var over_times: int = 0
 @export var slimer_numbers:int
 
+signal everything_ready
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,6 +56,8 @@ func _on_start_game() -> void:
 		slimers[i].position = slimer_pos
 		if over_times == 0:
 			slimers[i].slime_collieded.connect(_on_slime_collied)
+		
+	
 	
 	
 func _on_slime_collied(body:Node2D):
