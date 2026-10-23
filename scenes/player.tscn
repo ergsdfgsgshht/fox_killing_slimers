@@ -133,18 +133,18 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j56pd"]
-radius = 12.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnf8o"]
+radius = 14.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1737204404]
 script = ExtResource("1_g2els")
-speed = 80.0
+speed = 160.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1067391328]
 sprite_frames = SubResource("SpriteFrames_cnf8o")
 animation = &"died"
 autoplay = "待机"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1012522700]
-position = Vector2(0, 4)
-shape = SubResource("CircleShape2D_j56pd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=418128195]
+position = Vector2(-4, 2)
+shape = SubResource("CircleShape2D_cnf8o")

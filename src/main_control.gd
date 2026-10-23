@@ -7,7 +7,6 @@ var slimers: Array[Node]
 var over_times: int = 0
 @export var slimer_numbers:int
 
-signal everything_ready
 
 
 # Called when the node enters the scene tree for the first time.
@@ -67,7 +66,9 @@ func _on_slime_collied(body:Node2D):
 		_game_over()
 	pass
 
-func _game_over():
+func _game_over() -> void:
+	if is_gameover:
+		return;
 	is_gameover = true
 	over_times += 1
 	player.player_state = player.PlayerState.DIED
@@ -77,6 +78,7 @@ func _game_over():
 		remove_child(slimers[i])
 	add_child(over_menu)
 	over_menu.position = Vector2(-178,-107)
+	print("overtimes的值为",over_times)
 	if over_times == 1:
 		over_menu.menu_respawn.connect(_on_menu_respawn)
 		over_menu.menu_exit.connect(_on_menu_exit)
@@ -91,5 +93,5 @@ func _on_menu_exit() -> void:
 	get_tree().quit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

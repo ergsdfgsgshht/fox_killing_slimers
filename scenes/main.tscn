@@ -1,69 +1,55 @@
 [gd_scene format=3 uid="uid://bvm23enxxek6g"]
 
-[ext_resource type="Texture2D" uid="uid://d3icbotl63lxv" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_0wfyh"]
 [ext_resource type="Script" uid="uid://dlnaxbfmillkf" path="res://src/main_control.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bwqo700nei2bd" path="res://AssetBundle/Sprites/5a2da4f5-7121-4eb8-865f-dd08daa09113.png" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bb8flm1wjbo6u" path="res://scenes/player.tscn" id="3_sugp2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cnf8o"]
-distance = -137.0
+distance = -420.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j56pd"]
+distance = -424.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rck6d"]
-distance = -64.0
+distance = -289.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mlurj"]
-distance = 135.0
+distance = -10.0
 
 [node name="MainScene" type="Node2D" unique_id=417079548]
+position = Vector2(-3, 5)
 script = ExtResource("1_jyhfs")
-slimer_numbers = 3
-metadata/_edit_lock_ = true
+slimer_numbers = 14
 
-[node name="Background1" type="Sprite2D" parent="." unique_id=1972574462]
-texture = ExtResource("1_0wfyh")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=377853019]
+position = Vector2(-4, -3)
+texture = ExtResource("2_0wfyh")
 
-[node name="Background2" type="Sprite2D" parent="." unique_id=499845920]
-position = Vector2(-480, 0)
-texture = ExtResource("1_0wfyh")
-
-[node name="Background3" type="Sprite2D" parent="." unique_id=1204695314]
-position = Vector2(-240, 0)
-texture = ExtResource("1_0wfyh")
-
-[node name="Background4" type="Sprite2D" parent="." unique_id=1872886237]
-position = Vector2(237, 0)
-texture = ExtResource("1_0wfyh")
-
-[node name="Background5" type="Sprite2D" parent="." unique_id=162355962]
-position = Vector2(476, 0)
-texture = ExtResource("1_0wfyh")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=801696517]
-zoom = Vector2(2.435, 2.36)
+[node name="Camera2D2" type="Camera2D" parent="." unique_id=801696517]
+position = Vector2(-1, 0)
+scale = Vector2(1.3159267, 1)
+zoom = Vector2(1.025, 1.395)
 
 [node name="MapEdge" type="StaticBody2D" parent="." unique_id=1491088168]
 position = Vector2(0, -1)
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdge" unique_id=2144563933]
-position = Vector2(-1, -3)
+position = Vector2(-2, 1)
 shape = SubResource("WorldBoundaryShape2D_cnf8o")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="MapEdge" unique_id=206616880]
-position = Vector2(-235, 4)
+position = Vector2(-447, -4)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_j56pd")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="MapEdge" unique_id=1580143551]
-position = Vector2(171, 1)
+position = Vector2(576, 4)
 rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_rck6d")
-metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="MapEdge" unique_id=132660613]
-position = Vector2(-1, -269)
+position = Vector2(-1, -413)
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_mlurj")
-metadata/_edit_lock_ = true
+
+[node name="Player" parent="." unique_id=1737204404 instance=ExtResource("3_sugp2")]
