@@ -3,6 +3,7 @@ extends Node2D
 var start_menu:Node2D
 var over_menu:Node2D
 var player:CharacterBody2D
+var bullet:CharacterBody2D
 var slimers: Array[Node]
 var over_times: int = 0
 var bullet_number:int = 30
@@ -27,6 +28,7 @@ func _ready() -> void:
 	#预加载玩家
 	var player_scene = preload("res://scenes/player.tscn")
 	player = player_scene.instantiate()
+	
 	
 	#预加载slimers
 	var slimerscenes = []
