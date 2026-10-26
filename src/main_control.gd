@@ -3,7 +3,7 @@ extends Node2D
 var start_menu:Node2D
 var over_menu:Node2D
 var player:CharacterBody2D
-var bullet:CharacterBody2D
+var bullet_scene:Resource
 var slimers: Array[Node]
 var over_times: int = 0
 var bullet_number:int = 30
@@ -31,12 +31,16 @@ func _ready() -> void:
 	
 	
 	#预加载slimers
-	var slimerscenes = []
+	var slimerscenes:Resource
 	for i in range(slimer_numbers):
-		slimerscenes.append(preload("res://scenes/slime.tscn"))
+		slimerscenes = preload("res://scenes/slime.tscn")
 	for i in range(slimer_numbers):
-		var slimer_instance = slimerscenes[i].instantiate()
+		var slimer_instance = slimerscenes.instantiate()
 		slimers.append(slimer_instance)
+		
+	#预加载bullet_scene
+	bullet_scene = preload("res://scenes/bullet.tscn")
+		
 		
 	
 	
@@ -95,7 +99,7 @@ func _game_over() -> void:
 	camera.zoom = Vector2(1.035,1.41)
 	remove_child(player)
 	for i in range(slimer_numbers):
-		remove_child(slimers[i])
+		NodeUtils.safe_remove_child(self,slimers[i])
 	add_child(over_menu)
 	over_menu.position = Vector2(-178,-107)
 	print("overtimes的值为",over_times)

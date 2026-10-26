@@ -18,7 +18,7 @@ distance = -10.0
 [node name="MainScene" type="Node2D" unique_id=417079548]
 position = Vector2(-3, 5)
 script = ExtResource("1_jyhfs")
-slimer_numbers = 20
+slimer_numbers = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=377853019]
 position = Vector2(-4, -3)
@@ -26,6 +26,8 @@ texture = ExtResource("2_0wfyh")
 
 [node name="MapEdge" type="StaticBody2D" parent="." unique_id=1491088168]
 position = Vector2(0, -1)
+collision_layer = 4
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapEdge" unique_id=2144563933]
 position = Vector2(-2, 1)

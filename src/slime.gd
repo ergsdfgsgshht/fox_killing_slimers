@@ -1,17 +1,24 @@
 extends CharacterBody2D
+class_name Slime
 @export var speed:float
 @export var initial_rand_speed:float
 @export var k:float
 
 signal slime_collieded(body:Node2D)
-var hp:int = 10
+@export var hp:int 
 var is_first_time:bool = true
 var current_player:Node
+var health_bar: Node
+var ttl:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current_player = get_parent().player
 	velocity = Vector2(randf_range(-1,1),randf_range(-1,1)).normalized() * initial_rand_speed
+	health_bar = PixelHealthBar.create(hp,hp)
+	add_child(health_bar)
+	health_bar.position = Vector2(-1,-8)
+	health_bar.scale = Vector2(0.1,0.1)
 	pass
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -20,6 +27,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 #模拟万有引力系统	
 func _physics_process(delta: float) -> void:
+	if ttl > 0:
+		ttl -= 1
 	var displacement = current_player.position - position
 	if displacement != Vector2.ZERO:
 		#两者间距离(标量)
@@ -33,11 +42,19 @@ func _physics_process(delta: float) -> void:
 		#撞到边界MapEdge时，把撞击前的速度沿碰撞面法线反射，实现反弹
 		if get_slide_collision_count() > 0:
 			var collision = get_last_slide_collision()
-			#if collision.get_collider().name == "MapEdge":
 			velocity = velocity_before.bounce(collision.get_normal()) * 0.8
-			if collision.get_collider().name == "Player":
+				
+			if collision.get_collider() is Player:
 				slime_collieded.emit(get_parent().player)
 
+func being_attack() -> void:
+	if ttl == 0:
+		hp -= 1
+		health_bar.current_health = hp
+		ttl = 40
+		if hp == 0:
+			get_parent().remove_child(self)
+	pass				
 	
 
 	

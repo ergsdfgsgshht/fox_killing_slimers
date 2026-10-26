@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://wnjb5slf1phw" path="res://src/pixel_health_bar.gd" id="1_bar"]
+
+
+[node name="PixelHealthBar" type="Control"]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 16.0
+mouse_filter = 2
+script = ExtResource("1_bar")
+max_health = 100.0
+current_health = 75.0

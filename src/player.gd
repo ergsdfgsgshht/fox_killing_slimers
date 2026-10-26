@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var speed:float
 @onready var animation_player = $AnimatedSprite2D
@@ -33,9 +34,10 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if ttl == 0:
-			var bullet= preload("res://scenes/bullet.tscn").instantiate()
+			var bullet= get_parent().bullet_scene.instantiate()
 			add_child(bullet)
 			bullet.position = Vector2(25,0)
+			bullet.reparent(get_parent())
 			ttl = 60
 			
 	

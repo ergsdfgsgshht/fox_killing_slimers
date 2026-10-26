@@ -4,10 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://d2ct30mf226wv" path="res://AssetBundle/Sprites/bullet.png" id="1_mkf8s"]
 [ext_resource type="Texture2D" uid="uid://crgxbc5owyqji" path="res://AssetBundle/Sprites/bomb.png" id="2_y25gk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnf8o"]
-radius = 0.99968535
-height = 6.0
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_l5glv"]
 atlas = ExtResource("2_y25gk")
 region = Rect2(0, 0, 256, 256)
@@ -90,10 +86,16 @@ animations = [{
 }],
 "loop": 1,
 "name": &"bomb",
-"speed": 12.0
+"speed": 24.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnf8o"]
+radius = 0.99968535
+height = 6.0
+
 [node name="Bullet" type="CharacterBody2D" unique_id=1143676337]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_l5glv")
 speed = 400.0
 
@@ -102,13 +104,17 @@ position = Vector2(-0.5, 0)
 scale = Vector2(0.4, 0.426)
 texture = ExtResource("1_mkf8s")
 
+[node name="BombEffect" type="AnimatedSprite2D" parent="." unique_id=1801032876]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_mkf8s")
+animation = &"bomb"
+frame = 9
+frame_progress = 0.49750865
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=348336206]
 position = Vector2(-1, 0)
 rotation = 1.5707964
 scale = Vector2(1.4, 1)
 shape = SubResource("CapsuleShape2D_cnf8o")
 
-[node name="BombEffect" type="AnimatedSprite2D" parent="." unique_id=1801032876]
-scale = Vector2(0.1, 0.1)
-sprite_frames = SubResource("SpriteFrames_mkf8s")
-animation = &"bomb"
+[connection signal="destroy_self" from="." to="." method="_on_destroy_self"]
