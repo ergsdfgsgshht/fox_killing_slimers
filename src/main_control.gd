@@ -20,7 +20,7 @@ func _ready() -> void:
 	add_child(start_menu)
 	start_menu.position = Vector2(0,-6)
 	start_menu.start_game.connect(_on_start_game)
-	
+	start_menu.scale = Vector2(2.0,2.0)
 	#预加载失败界面menu
 	var menu_scene = preload("res://scenes/menu.tscn")
 	over_menu = menu_scene.instantiate()
@@ -68,8 +68,8 @@ func _on_start_game() -> void:
 			slimer_pos = Vector2(randf_range(-821,-137),randf_range(86,381))
 		if scope == 4:
 			slimer_pos = Vector2(randf_range(129,803),randf_range(76,376))
-		add_child(slimers[i])
 		slimers[i].position = slimer_pos
+		add_child(slimers[i])
 		if over_times == 0:
 			slimers[i].slime_collieded.connect(_on_slime_collied)
 	
@@ -81,7 +81,6 @@ func _on_start_game() -> void:
 	
 	
 func _on_slime_collied(body:Node2D):
-	print("主根节点接受到碰撞信号，信号源：",body)
 	if body.name == "Player":
 		print("玩家撞到怪物，游戏结束")
 		_game_over()

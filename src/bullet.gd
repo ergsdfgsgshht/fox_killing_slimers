@@ -5,18 +5,21 @@ class_name Bullet
 signal destroy_self
 var is_exploding := false
 
+var parent_status:Vector2
+var parent_init_speed:Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
-	pass # Replace with function body.
+	$BombEffect.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if is_exploding:
 		return
-	velocity = Vector2(speed,0)
+	print(parent_init_speed)
+	velocity = parent_status * speed + parent_init_speed
+	rotation = parent_status.angle()
 	move_and_slide()
 	if get_slide_collision_count() > 0:
 		var collider = get_last_slide_collision().get_collider()
@@ -24,6 +27,7 @@ func _physics_process(_delta: float) -> void:
 		if collider.name == "MapEdge" or collider is Slime:
 			print("!!!!!发生碰撞")
 			is_exploding = true
+			$BombEffect.visible = true
 			$BombEffect.play("bomb")
 			$Sprite2D.visible = false
 			if collider is Slime:
